@@ -1,0 +1,33 @@
+{% extends 'usuario/base.html' %}
+{% load static %}
+{% block title %}Acerca de Nosotros{% endblock title %}
+{% block content %}
+
+<div class="container-fluid mt-3 pt-3">
+  <div class="row">
+    <div class="col-6 text-center">
+      <img src="{% static 'imgs/lapices.jpg' %}" class="w-75" alt="">
+    </div>
+
+    <div class="col-6 ">
+      <h1 class="text-start">Acerca de nosotros</h1>
+      <p class="mt-3 text-justify">
+       Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere porro aspernatur eligendi odit, 
+       consequatur tenetur ratione, ut atque quod molestias non ipsa! Quae ullam error facere dignissimos 
+       distinctio inventore animi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque 
+       minima ipsa, sapiente at distinctio, explicabo fugiat est sequi beatae tenetur sint asperiores itaque, 
+       placeat ab assumenda nobis facilis omnis porro.
+      </p>
+      <p class="mt-3 text-justify">
+       Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere porro aspernatur eligendi odit, 
+       consequatur tenetur ratione, ut atque quod molestias non ipsa! Quae ullam error facere dignissimos 
+       distinctio inventore animi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque 
+       minima ipsa, sapiente at distinctio, explicabo fugiat est sequi beatae tenetur sint asperiores itaque, 
+       placeat ab assumenda nobis facilis omnis porro.
+      </p>
+      
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

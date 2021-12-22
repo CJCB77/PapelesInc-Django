@@ -1,0 +1,69 @@
+{% extends 'usuario/base.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock title %}
+
+{% block content %}
+
+{% comment %} Carousel de Imagenes {% endcomment %}
+<div class="container-lg">
+  <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'imgs/Boligrafos.jpg' %}" class="d-block w-100" alt="..." style="height: 600px; width: 300px;">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'imgs/cuadernos.jpg' %}" class="d-block w-100" alt="..." style="height: 600px; width: 300px;">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'imgs/Marcadores1.jpg' %}" class="d-block w-100" alt="..." style="height: 600px; width: 300px;">
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev mt-5" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next mt-5" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden" >Next</span>
+  </button>
+</div>
+
+{% comment %} Consultar todos los productos {% endcomment %}
+<div class="container-lg mt-5 mb-5">
+  <p class="text-start fs-2 fw-light mb-2 d-inline-block">Todos los Productos</p>
+  <hr>
+  <div class="container-fluid">
+    <div class="row" id="productos">
+
+      {% for prod in productos %}
+      <div class="col-3 mb-3">
+
+       <a href="{% url 'usuario:detalles' prod.id %}" class="link-success">
+        <img class='img-fluid mt-3' style='width: 250px; height:380px' 
+       src=" {% static 'imgsProd/'|add:prod.imagen %} " alt=""
+       >
+       <p class='text-center fs-5 mt-2 fw-normal'> {{prod.nombre|capfirst}} </p>
+       </a>
+
+        <p class='text-center fs-6 fw-bold'> ${{prod.precio}} </p>
+        {% if prod.stock > 0 %}
+          <p class='text-center fw-light lh-1 fs-5 fst-italic'>En stock!</p>
+        {% else %}
+          <p class='text-center fw-light lh-1 fs-5 fst-italic'>No disponible</p>"
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+
+
+
+
+
+

@@ -1,0 +1,82 @@
+{% extends 'usuario/base.html' %}
+{% block title %}Register{% endblock title %}
+{% block content %}
+<div class="container-fluid">
+  <h1 class="mt-5 text-center">Registrarse</h1>
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="container mt-3">
+
+      <div class="row d-flex justify-content-center">
+        <div class="mb-3 col-7">
+          {{form.username.label}}
+          {{form.username}}
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="mb-3 col-7">
+          {{form.password1.label}}
+          {{form.password1}}
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="mb-3 col-7">
+          {{form.password2.label}}
+          {{form.password2}}
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="mb-3 col-4">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre...">
+        </div>
+        <div class="mb-3 col-3">
+          <label for="apellido">Apellido</label>
+          <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido...">
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="mb-3 col-7">
+          <label for="correo">Correo</label>
+          <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo...">
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="mb-3 col-4">
+          <label for="provincia">Provincia</label>
+          <input type="text" class="form-control" id="provincia" name="provincia" placeholder="Provincia...">
+        </div>
+      <div class="mb-3 col-3">
+          <label for="ciudad">Ciudad</label>
+          <input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="Ciudad...">
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="mb-3 col-7">
+          <label for="direccion">Direccion</label>
+          <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion...">
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="mb-3 col-7">
+          <label for="celular">Celular</label>
+          <input type="text" class="form-control" id="celular" name="celular" placeholder="Celular...">
+        </div>
+      </div>
+
+      <div class="mb-1 row d-flex justify-content-center">
+        <div class="col text-center">
+          <p class="fs-5">Ya tienes cuenta? <a href="{% url 'usuario:login' %}">Inicia Sesion</a></p>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center">
+        <div class="mb-3 col-7 text-center">
+          <button type="submit" class="btn btn-lg btn-dark mt-1">Registrarse</button>
+        </div>
+      </div>
+    
+    </div>
+  </form>
+</div>
+{% endblock content %}

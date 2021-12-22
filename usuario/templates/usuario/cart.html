@@ -1,0 +1,120 @@
+{% extends 'usuario/base.html' %}
+{% load static %}
+{% block title %}Carrito de Compra{% endblock title %}
+
+{% block style %}
+<style>
+.cart{
+  background-color:#EEEEEE;
+  padding:30px 30px;
+}
+
+.header{
+  background-color:#fff;
+  margin:10px;
+  border-radius:5px;
+  padding:10px;
+}
+
+.item-table{
+  background-color:#fff;
+  margin-top:20px;
+  border-radius:5px;
+
+}
+
+.row-img{
+  height:200px;
+}
+
+.arrows{
+  position: relative;
+}
+
+.arrow-down{
+  position:absolute;
+  top:-15px;
+  left:20px;
+  height:15px;
+
+}
+.arrow-up{
+  position:absolute;
+  height:15px;
+  left:20px;
+  top:-30px;
+}
+
+.items {
+  padding-bottom:200px;
+}
+</style>
+{% endblock style %}
+
+{% block content %}
+
+<section class="container-fluid cart">
+  <div class="row justify-content-center">
+    <div class="col-11 header">
+      <a href="{% url 'usuario:index' %}" class="btn btn-outline-dark mb-2"> <-- Seguir comprando</a><br>
+      <hr>
+      <table class="table table-borderless mb-3">
+        <tr>
+          <th>
+          <p class="fs-5">Items: <span class="fw-normal">{{order.get_cart_items_quantity}}</span> </p>
+          </th>
+          <th>
+          <p class="fs-5">Total: <span class="fw-normal">${{order.get_cart_total}}</span></p>
+          </th>
+          <th>
+          <a href="{% url 'usuario:checkout' %}" class="btn btn-warning" style="float:right;" >Detalles de Orden --></a>
+          </th>
+        </tr>
+      </table>
+
+    </div>
+    <div class="col-11 item-table items">
+      <table class="table">
+        <thead>
+          <tr class="d-flex">
+            <th scope="col" class="col-3"></th>
+            <th scope="col" class="col-3">Articulo</th>
+            <th scope="col" class="col-1">Precio</th>
+            <th scope="col" class="col-2">Cantidad</th>
+            <th scope="col" class="col-2">Total</th>
+            <th scope="col" class="col-1"></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for item in items %}
+          <tr class="d-flex">
+            <td class="col-3">
+              <img src="{% static 'imgsProd/'|add:item.producto.imagen %}" class="row-img" >
+            </td>
+            <td class="col-3">{{item.producto.nombre}}</td>
+            <td class="col-1">${{item.producto.precio}}</td>
+            <td class="col-2">
+              {{item.cantidad}}
+              <div class="arrows">
+                <a href="{% url 'usuario:add_qty' item.id %}">
+                  <img src="{% static 'imgs/arrow-up.png' %}" class="arrow-up change-qt">
+                </a>
+                <a href="{% url 'usuario:sub_qty' item.id %}">
+                  <img src="{% static 'imgs/down-arrow.png' %}" class="arrow-down change-qt">
+                </a>
+              </div>
+            </td>
+            <td class="col-2">${{item.get_total}}</td>
+            <td class="col-1">
+            <a href="{% url 'usuario:delete' item.id %}" class="btn btn-danger btn-sm">Remover</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

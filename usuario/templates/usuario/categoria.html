@@ -1,0 +1,35 @@
+{% extends 'usuario/base.html' %}
+{% load static %}
+{% block title %}Categorias{% endblock title %}
+{% block content %}
+
+{% comment %} Consultar todos los productos de esta categoria{% endcomment %}
+<div class="container-lg mt-5 mb-5">
+  <p class="text-start fs-2 fw-light mb-2 d-inline-block">{{categoria.nombre|capfirst}}</p>
+  <hr>
+  <div class="container-fluid">
+    <div class="row" id="productos">
+
+      {% for prod in productos %}
+      <div class="col-3 mb-3">
+
+        <a href="{% url 'usuario:detalles' prod.id %}" class="link-success">
+          <img class='img-fluid mt-3' style='width: 250px; height:380px' 
+          src=" {% static 'imgsProd/'|add:prod.imagen %} " alt=""
+          >
+          <p class='text-center fs-5 mt-2 fw-normal'> {{prod.nombre|capfirst}} </p>
+        </a>
+
+        <p class='text-center fs-6 fw-bold'> ${{prod.precio}} </p>
+        {% if prod.stock > 0 %}
+          <p class='text-center fw-light lh-1 fs-5 fst-italic'>En stock!</p>
+        {% else %}
+          <p class='text-center fw-light lh-1 fs-5 fst-italic'>No disponible</p>"
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

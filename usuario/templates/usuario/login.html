@@ -1,0 +1,47 @@
+{% extends 'usuario/base.html' %}
+{% block title %}Login{% endblock title %}
+{% block content %}
+<div class="container-fluid">
+  <h1 class="mt-5 text-center">Iniciar sesion</h1>
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="container mt-3">
+
+      <div class="row d-flex justify-content-center">
+        <div class="mb-3 col-7">
+          {{form.username.label}}
+          {{form.username}}
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center">
+        <div class="mb-3 col-7">
+          {{form.password.label}}
+          {{form.password}}
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center">
+        <div class="text-center">
+          {% for message in messages %}
+            <p class="fs-6">{{message}}!</p>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="mb-1 row d-flex justify-content-center">
+        <div class="col text-center">
+          <p class="fs-5">No tienes cuenta? <a href="{% url 'usuario:register' %}">Registrate</a></p>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center">
+        <div class="mb-3 col-7 text-center">
+          <button type="submit" class="btn btn-lg btn-dark mt-2">Ingresar</button>
+        </div>
+      </div>
+    
+    </div>
+  </form>
+</div>
+{% endblock content %}
